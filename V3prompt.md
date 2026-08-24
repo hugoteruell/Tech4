@@ -1,0 +1,82 @@
+# Análise semanal — prompt v3
+
+Versão de trabalho do prompt recorrente. Substitui a v2 (a que gerou `V2-analise.md`).
+Crítica que motivou a reescrita está resumida em `diff.entre.Vs.md`.
+
+---
+
+## ENTRADA
+
+```
+OBJETO: [o que analisar — arquivos, área, decisão específica]
+OBJETIVO: [o resultado que se quer mover, em uma frase]
+ESTADO ANTERIOR: [colar a tabela de prioridade da rodada passada;
+                  escrever "primeira rodada" se não houver]
+MUDOU NA SEMANA: [fatos novos: o que foi feito, o que aconteceu,
+                  o que se descobriu — ou "nada registrado"]
+DECISÃO QUE ISSO ALIMENTA: [o que vou decidir depois de ler]
+```
+
+## TAREFA
+
+Analise o OBJETO à luz do OBJETIVO. Identifique causas e gargalos, não sintomas. Compare com o ESTADO ANTERIOR e diga o que mudou.
+
+## FORMATO
+
+**0. DELTA — o que mudou desde a rodada anterior**
+Por item da rodada passada: avançou / parado / caiu (com o motivo). O que é novo esta semana. Pular na primeira rodada.
+
+**1. PROBLEMA CENTRAL — um parágrafo**
+Um problema, não uma lista. Se houver mais de um, escolha o que, resolvido, torna os outros menores.
+
+**2. CAUSAS — máximo 5**
+Cada uma com a evidência que a sustenta, citada da fonte. Ordenar por quanto explicam do problema central.
+
+**3. OPORTUNIDADES — máximo 6, ID estável (O1, O2...)**
+Cada uma em três partes:
+- o que se observa (com evidência)
+- por que acontece
+- a mudança específica proposta
+
+Manter o mesmo ID entre rodadas para o item continuar rastreável.
+
+**4. PRIORIDADE — tabela**
+
+| ID | Impacto no objetivo | Esforço | Depende de | Prioridade |
+|---|---|---|---|---|
+
+Alta só se: impacto direto no OBJETIVO e sem dependência aberta. Item que destrava outros sobe, mesmo com impacto próprio menor.
+
+**5. PRÓXIMO PASSO — só para as prioridades altas**
+Uma ação por item, executável em até uma semana, com dono, prazo e critério de conclusão observável. Se não cabe em uma semana, quebre até caber.
+
+**6. NÃO FAZER ESTA SEMANA**
+O que parece urgente e não é, e por quê. O que deve ser interrompido.
+
+**7. LACUNAS**
+Cada hipótese com: o que a resolveria, e quanto custa resolver.
+
+## REGRAS
+
+- Toda afirmação factual citada da fonte. Sem fonte, marcar `Hipótese:` no início da frase.
+- Não repetir na seção 3 o que já está na 5. Seção 3 é o diagnóstico, seção 5 é a ação.
+- Oportunidade que não nomeia evidência específica nem mudança específica não entra.
+- Se faltar informação para o OBJETIVO, dizer isso em vez de preencher com dedução.
+- Fechar com o que a análise não pode afirmar.
+
+---
+
+## Por que mudou em relação à v2
+
+| Problema da v2 | Correção na v3 |
+|---|---|
+| "o problema apresentado" sem dizer onde | Campo OBJETO explícito |
+| "resultado atual" sem definir resultado | Campo OBJETIVO explícito |
+| Sem memória entre rodadas | Campos ESTADO ANTERIOR e MUDOU NA SEMANA + seção 0 |
+| Prioridade sem rubrica | Tabela com impacto, esforço e dependência |
+| Contagem livre de causas e oportunidades | Tetos de 5 e 6 |
+| Seções 3 e 5 se sobrepunham | Regra explícita separando diagnóstico de ação |
+| "não invente" sem mecanismo | Citação obrigatória da fonte |
+| Só somava, nunca cortava | Seção 6 — não fazer |
+| Hipótese sem consequência | Seção 7 — o que resolveria e a que custo |
+| AMOSTRA longa em domínio alheio | Removida; substituída pela estrutura em três partes da seção 3 |
