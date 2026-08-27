@@ -12,6 +12,7 @@ Nada nesta skill corrige arquivo. Ela **aponta e propõe**. A decisão é de que
 ## Procedimento
 
 1. Listar todos os `.md` do repositório, incluindo `CLAUDE.md` e a raiz.
+   **Excluir `.claude/skills/**` do escopo de conteúdo.** As skills são ferramenta, não afirmação sobre o negócio — e elas citam trechos errados dos documentos como exemplo de calibração. Tratá-las como conteúdo faz a própria checagem acusar os exemplos que ela usa para se explicar. Verificar as skills só quanto a referência quebrada de caminho real.
 2. Ler todos por inteiro. Não amostrar — inconsistência mora no detalhe que o resumo descarta.
 3. Montar a lista de afirmações factuais de cada arquivo: número, data, nome, status, decisão.
 4. Cruzar arquivo contra arquivo, procurando as seis classes abaixo.

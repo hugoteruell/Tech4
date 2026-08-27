@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Repositório de estratégia da **Drafted** — SaaS de reputation intelligence ("next-gen PR for the AI era"). Não há código aqui. São documentos de contexto, prompts de análise e as análises que eles geram.
+Repositório de estratégia da **Drafted** — SaaS de reputation intelligence ("next-gen PR for the AI era"). Não há código de produto aqui. São documentos de contexto, prompts de análise, as análises que eles geram e as skills que operam esse ciclo.
 
 ## Estrutura
 
@@ -9,7 +9,16 @@ problema-drafted.md    Documento de problema (fonte, de 06/08/2026)
 Contexto/              Material-base: perfil do fundador, negócio, ICP
 Prompts/               Os prompts de análise, versionados (V1 → V3)
 estrategia/            As respostas que cada prompt gerou
+.claude/skills/        Skills próprias do projeto (versionadas)
 ```
+
+Skills disponíveis, todas as três sem edição automática de arquivo — elas propõem, você decide:
+
+- **`consistencia`** — cruza os `.md` e aponta contradição, dado vencido, referência quebrada e pendência órfã. Rodar antes de mostrar o material a mentor, banca ou cliente.
+- **`fecha-conversa`** — nota bruta de reunião vira ata com dono e prazo, atualiza o contexto que a conversa afetou e commita. Trava antes do commit se houver terceiro identificável, porque o repositório é público.
+- **`resumo-semanal`** — status da semana com evidência do git. A saída dela preenche o campo `MUDOU NA SEMANA` do V3.
+
+As skills de terceiros em `.claude/skills/` estão no `.gitignore` — `docx` é © Anthropic com licença que proíbe redistribuição.
 
 `Prompts/diff.entre.Vs.md` registra o que mudou entre as versões e por quê. Ler antes de propor alteração em qualquer prompt.
 
