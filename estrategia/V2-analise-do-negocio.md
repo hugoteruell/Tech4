@@ -118,7 +118,7 @@ Hoje a variação entre execuções é um passivo que *"precisa ser explicada ao
 
 **O7 — Banda.** Incluir o intervalo observado das cinco execuções no próximo relatório gerado, com uma linha de explicação na página do pilar de AI Perception. Mudança pequena de apresentação, sem alterar o cálculo.
 
-**O8 — Correções.** Aplicar direto no `problema-drafted.md` junto da reescrita já mapeada em `V1prompt.md`, ou remover a seção "Dados Existem", que concentra os três erros e é fora de escopo para um documento de problema.
+**O8 — Correções.** Aplicar direto no `problema-drafted.md` junto da reescrita já mapeada em `estrategia/V1-analise-do-documento.md`, ou remover a seção "Dados Existem", que concentra os três erros e é fora de escopo para um documento de problema.
 
 ---
 
