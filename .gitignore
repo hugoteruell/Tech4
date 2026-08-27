@@ -1,2 +1,5 @@
 .DS_Store
-.claude/skills/
+
+# Skills de terceiros — nao redistribuir (docx e (c) Anthropic, uso restrito)
+.claude/skills/docx/
+.claude/skills/lead-research-assistant/
