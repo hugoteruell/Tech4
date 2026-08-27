@@ -22,7 +22,7 @@ Nenhuma dessas métricas responde uma pergunta básica:
 
 > **Como você é visto por inteligência artificial?**
 
-Essa pergunta não tem resposta. A métrica não existe.
+Já existe quem tente responder: uma categoria inteira de ferramentas de AI visibility surgiu para medir menção de marca em LLM. O problema é outro. Medir virou a parte fácil e está ficando barata. O que ninguém resolve é o passo seguinte — quem, dentro da empresa, responde por essa interpretação e opera para mudá-la.
 
 ---
 
@@ -79,7 +79,9 @@ Ninguém disse: "não, o problema é outro — você não sabe como você é vis
 
 Alguns anos atrás: LLMs não eram universais o suficiente pra justificar medição específica.
 
-Agora: ChatGPT tem 100M users. Perplexity cresce. Claude é usado em RAG corporativo. Sistemas de recomendação alimentam-se de LLMs.
+Agora: assistentes de IA entraram na rotina de decisão de compra, e o hábito de perguntar antes de escolher deixou de ser de nicho. Perplexity cresce, Claude é usado em RAG corporativo, e sistemas de recomendação passaram a se alimentar de LLMs.
+
+> `Hipótese:` este parágrafo precisa de **um número com fonte e data** — volume de uso do ChatGPT ou share de jornada de compra que passa por IA. Sem isso, ele é asserção sem lastro, e é exatamente onde a leitura de um investidor para.
 
 A reputação em IA deixou de ser futurista e virou hoje.
 
@@ -98,21 +100,11 @@ A reputação em IA deixou de ser futurista e virou hoje.
 - "O contexto em que aparecemos é favorável?"
 - "Como podemos melhorar a percepção, dado como LLMs consomem dados?"
 
-Essa segunda série de perguntas não tem resposta.
+Uma ferramenta responde a primeira. Nenhuma responde a última — e a última é a única que muda o que a empresa faz na segunda-feira.
 
 ---
 
 ## O Momento é Agora
-
-### Dados Existem
-
-- Instagram API pública (limitada mas existe)
-- TikTok dados públicos
-- X API aberta
-- Web scraping é legal para dados públicos
-- Reviews em Google, Trustpilot, etc. são públicos
-
-Você não precisa de permissão de OpenAI ou Google. Os dados estão lá.
 
 ### Modelos Existem
 
