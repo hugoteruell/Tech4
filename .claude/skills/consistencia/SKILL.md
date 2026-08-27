@@ -48,7 +48,22 @@ Marcar também dado que tem data mas passou de doze meses.
 ### 5. Referência quebrada
 Caminho de arquivo, nome de seção ou nome de documento citado que não existe mais. Arquivos foram renomeados e movidos neste repo; citações internas ficam para trás.
 
-Verificar cada caminho citado contra o disco.
+Verificar cada caminho citado contra o disco. **Antes de reportar, classificar em três tipos** — só o primeiro é achado:
+
+- **Referência quebrada** — o texto aponta para um arquivo que existia e foi renomeado ou movido. É erro. Reportar com o caminho novo.
+- **Placeholder** — o caminho contém marcador de posição (`NN`, `XX`, `nome-do-arquivo`, `identificador`) ou aparece dentro de bloco de template, exemplo ou definição de padrão de nomenclatura. **Não é achado.** Não reportar, nem como nota.
+- **Pendência declarada** — o arquivo não existe porque ainda não foi escrito, e alguma análise já registra isso como item em aberto. Não é erro de referência: é trabalho não feito. Mencionar em uma linha na nota de fechamento, ligando ao ID da oportunidade correspondente, e não contar na severidade baixa.
+
+Exemplos reais deste repo, para calibrar:
+
+| Caminho citado | Tipo | Reportar? |
+|---|---|---|
+| `V1prompt.md` depois da reorganização | quebrada | Sim — apontar o caminho novo |
+| `estrategia/V3-analise-semanal-NN.md` | placeholder | Não |
+| `estrategia/conversas/NN-identificador.md` | placeholder | Não |
+| `objetivo.md` | pendência declarada (O9) | Nota de fechamento, não achado |
+
+Falso positivo repetido é o que mata uma checagem: se a mesma seção acusa os mesmos três não-erros toda execução, ela para de ser lida.
 
 ### 6. ID e pendência
 - **IDs de oportunidade** (`O1`, `O2`, …) precisam ser estáveis entre rodadas: o mesmo ID sempre o mesmo item. Apontar ID reaproveitado para coisa diferente, ID citado que nunca foi definido, e o próximo ID livre.
