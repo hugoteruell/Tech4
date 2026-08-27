@@ -1,5 +1,5 @@
 .DS_Store
 
-# Skills de terceiros — nao redistribuir (docx e (c) Anthropic, uso restrito)
+# Skill de terceiro com licenca restritiva — (c) Anthropic, proibe redistribuicao.
+# Instrucao de instalacao em .claude/skills/README.md
 .claude/skills/docx/
-.claude/skills/lead-research-assistant/
