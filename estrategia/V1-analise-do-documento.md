@@ -1,4 +1,4 @@
-# Análise do `problema-drafted.md` — V1
+# Análise do `problema.md` — V1
 
 Análise do documento de problema, usando `drafted-negocio.md`, `drafted-icp.md` e `About me.md` como contraprova. A maior parte dos problemas aparece justamente quando o documento é comparado com o que já está escrito nos outros arquivos.
 
@@ -8,7 +8,7 @@ Análise do documento de problema, usando `drafted-negocio.md`, `drafted-icp.md`
 
 O documento é bem escrito e argumenta o problema **errado**. Ele defende que existe um vácuo de *medição*. Mas o próprio doc de negócio diz, com todas as letras: *"Não deveria vender só medição. Medição vira commodity, ferramenta de AI visibility barata já existe e vai ficar mais barata."*
 
-Então o `problema-drafted.md` está construindo a tese em cima do pilar classificado como o mais frágil e mais copiável do negócio. Esse é o furo central — todo o resto deriva dele.
+Então o `problema.md` está construindo a tese em cima do pilar classificado como o mais frágil e mais copiável do negócio. Esse é o furo central — todo o resto deriva dele.
 
 ---
 
@@ -24,7 +24,7 @@ Qualquer mentor ou investidor que conheça o mercado abre o Google enquanto voc�
 
 ### 2. O documento não descreve o problema que a Drafted resolve
 
-Pelo `drafted-negocio.md`, o problema real tem duas camadas que o `problema-drafted.md` menciona de passagem ou ignora:
+Pelo `drafted-negocio.md`, o problema real tem duas camadas que o `problema.md` menciona de passagem ou ignora:
 
 - *"Ninguém dentro da empresa é dono desse assunto."* Assessoria cuida de imprensa, agência cuida de social, alguém cuida de review — e a interpretação que a IA monta a partir disso não tem responsável. Isso é um problema **organizacional**, não de dashboard. É muito mais defensável e muito menos commoditizável.
 - *"A perda acontece antes do primeiro clique. A empresa nunca vê o lead que não chegou."* Essa é a melhor frase de todo o material, e ela **não está** no documento de problema.
@@ -33,7 +33,7 @@ Pelo `drafted-negocio.md`, o problema real tem duas camadas que o `problema-draf
 
 ### 3. O documento não enfrenta o argumento mais difícil — e ele já está identificado
 
-O doc de negócio diz: *"Provar que mover o número move receita. Esse é o gargalo do negócio inteiro."* O `problema-drafted.md` não toca nisso em nenhuma linha.
+O doc de negócio diz: *"Provar que mover o número move receita. Esse é o gargalo do negócio inteiro."* O `problema.md` não toca nisso em nenhuma linha.
 
 Um documento de problema que evita a própria objeção mais forte não está pronto para banca nem para investidor. Quem lê e não pensa nisso, não foi convencido — apenas ainda não testou.
 
@@ -101,6 +101,6 @@ Do ~1.500 palavras atuais para algo em torno de 700. O documento hoje perde for�
 
 ## O ponto cego mais caro
 
-Os três documentos são internamente coerentes entre si, e nenhum deles tem **um cliente dentro**. O ICP admite isso explicitamente ("hipótese de trabalho, não retrato de base"), o negócio admite ("não existe registro de ticket, contrato ou base de clientes"). Mas o `problema-drafted.md` não admite nada — ele afirma com a confiança de quem tem evidência.
+Os três documentos são internamente coerentes entre si, e nenhum deles tem **um cliente dentro**. O ICP admite isso explicitamente ("hipótese de trabalho, não retrato de base"), o negócio admite ("não existe registro de ticket, contrato ou base de clientes"). Mas o `problema.md` não admite nada — ele afirma com a confiança de quem tem evidência.
 
 Esse descompasso de tom é o maior risco do material: um documento de problema escrito como certeza, apoiado em dois documentos escritos como hipótese.

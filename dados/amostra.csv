@@ -1,0 +1,10 @@
+id,item,prioridade,status,data_origem,dias_parado,evidencia
+O1,Entrada por evidencia de perda,Alta,nao_iniciado,2026-08-24,28,nenhum one-pager em estrategia/
+O2,Elo numero-receita,Baixa,bloqueado,2026-08-24,28,depende de cliente ativo inexistente
+O3,Reduzir frentes,reservado,aguardando_O6,2026-08-24,28,fora da lista ativa na rodada 01
+O4,Reputational Risk como porta de entrada,reservado,aguardando_O6,2026-08-24,28,fora da lista ativa na rodada 01
+O5,Destravar decisao sobre LinkedIn,Alta,nao_iniciado,2026-08-24,28,"aguardando ainda presente em contexto/drafted-negocio.md:78"
+O6,Conversas com o ICP (ramo O6b),Alta,nao_iniciado,2026-08-24,28,0 arquivos em estrategia/conversas/
+O7,Score em banda,reservado,aguardando_O6,2026-08-24,28,fora da lista ativa na rodada 01
+O8,Corrigir erros factuais do problema.md,Media,concluido,2026-08-24,0,commit 2ce4701 em 2026-08-27
+O9,Escrever objetivo.md com numero e data,Alta,nao_iniciado,2026-08-24,28,objetivo.md nao existe no disco

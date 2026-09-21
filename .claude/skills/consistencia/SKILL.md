@@ -1,6 +1,6 @@
 ---
 name: consistencia
-description: Cruza os documentos markdown do repositório e aponta inconsistências — contradições factuais entre arquivos, afirmações sem fonte, dados sem data, referências quebradas, IDs de oportunidade duplicados ou órfãos, e pendências que atravessam vários arquivos sem resolução. Use quando pedirem para checar os docs, antes de apresentar o material a mentor, banca, investidor ou cliente, e depois de editar qualquer arquivo em Contexto/, Prompts/ ou estrategia/.
+description: Cruza os documentos markdown do repositório e aponta inconsistências — contradições factuais entre arquivos, afirmações sem fonte, dados sem data, referências quebradas, IDs de oportunidade duplicados ou órfãos, e pendências que atravessam vários arquivos sem resolução. Use quando pedirem para checar os docs, antes de apresentar o material a mentor, banca, investidor ou cliente, e depois de editar qualquer arquivo em contexto/, Prompts/ ou estrategia/.
 ---
 
 # Checagem de consistência
@@ -23,14 +23,14 @@ Nada nesta skill corrige arquivo. Ela **aponta e propõe**. A decisão é de que
 ### 1. Contradição factual
 A mesma coisa afirmada de dois jeitos em arquivos diferentes.
 
-> Exemplo real deste repo: `problema-drafted.md` afirma que a métrica de percepção em IA "não existe"; `Contexto/drafted-negocio.md` afirma que "ferramenta de AI visibility barata já existe e vai ficar mais barata".
+> Exemplo real deste repo: `problema.md` afirma que a métrica de percepção em IA "não existe"; `contexto/drafted-negocio.md` afirma que "ferramenta de AI visibility barata já existe e vai ficar mais barata".
 
 Sinalizar sempre. É a classe mais cara — é a que derruba uma apresentação.
 
 ### 2. Contradição de confiança
 O mesmo fato tratado como certeza num arquivo e como hipótese em outro.
 
-> Exemplo real: a limitação da API do Instagram aparece como risco material de produto em `drafted-negocio.md` e como detalhe entre parênteses em `problema-drafted.md`.
+> Exemplo real: a limitação da API do Instagram aparece como risco material de produto em `drafted-negocio.md` e como detalhe entre parênteses em `problema.md`.
 
 Não é erro de fato, é erro de tom — e produz o mesmo estrago quando as duas versões chegam ao mesmo leitor.
 

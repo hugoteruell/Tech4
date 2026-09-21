@@ -31,7 +31,7 @@ Comparativo das três versões do prompt de análise e das respostas que cada um
 
 | | V1 | V2 | V3 |
 |---|---|---|---|
-| O que analisou | O texto do `problema-drafted.md` | A situação da Drafted | Por que a lista da rodada anterior não andou |
+| O que analisou | O texto do `problema.md` | A situação da Drafted | Por que a lista da rodada anterior não andou |
 | Tamanho | ~1.400 palavras | ~2.050 palavras | ~1.700 palavras, com teto |
 | Priorização | Ausente | Alta/média/baixa, justificada em prosa | Tabela com eixos nomeados |
 | Próximo passo | Um, no fim | Um por oportunidade | Um por prioridade alta, com dono, prazo e critério observável |

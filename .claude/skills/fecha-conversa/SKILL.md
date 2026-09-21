@@ -49,7 +49,7 @@ O que ficou em aberto e quem precisa responder.
 
 ## Etapa 2 — atualizar o contexto
 
-Os documentos em `Contexto/` são hipótese declarada, não retrato. Conversa real é a única coisa que os promove a fato — e é para isso que eles existem.
+Os documentos em `contexto/` são hipótese declarada, não retrato. Conversa real é a única coisa que os promove a fato — e é para isso que eles existem.
 
 Para cada afirmação da conversa, verificar se algum documento fala do mesmo assunto:
 
@@ -58,7 +58,7 @@ Para cada afirmação da conversa, verificar se algum documento fala do mesmo as
 - **Trouxe assunto novo** → acrescentar na seção certa, marcado com a conversa de origem.
 - **Não tocou em nada documentado** → não mexer em nada. A maioria das conversas cai aqui.
 
-Alvos prováveis: `Contexto/drafted-icp.md` (gatilhos, objeções, motivo de churn), `Contexto/drafted-negocio.md` (modelo comercial, ticket, estágio), e a lista de prioridade da última análise em `estrategia/`.
+Alvos prováveis: `contexto/drafted-icp.md` (gatilhos, objeções, motivo de churn), `contexto/drafted-negocio.md` (modelo comercial, ticket, estágio), e a lista de prioridade da última análise em `estrategia/`.
 
 **Mostrar o diff antes de commitar.** Atualização de contexto muda a base de todas as análises seguintes — não passa silenciosamente.
 

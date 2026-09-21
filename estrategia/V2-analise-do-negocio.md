@@ -1,6 +1,6 @@
 # Análise — Drafted
 
-**Objeto:** o problema apresentado em `problema-drafted.md`, lido junto de `drafted-negocio.md`, `drafted-icp.md` e `About me.md`.
+**Objeto:** o problema apresentado em `problema.md`, lido junto de `drafted-negocio.md`, `drafted-icp.md` e `About me.md`.
 
 **Base de evidência:** os quatro arquivos do repositório. Não há dado de cliente, receita, contrato ou uso. Tudo que depende disso está marcado como **Hipótese**.
 
@@ -82,7 +82,7 @@ O roteiro já está escrito no fim do `drafted-icp.md` (quatro perguntas). O pr�
 **O7 — Tratar o não-determinismo como cláusula, não como defeito a esconder**
 Hoje a variação entre execuções é um passivo que *"precisa ser explicada ao cliente antes, nunca depois"*. A oportunidade é publicar o score como **banda** (intervalo observado nas cinco execuções) em vez de ponto. **Hipótese:** isso converte a objeção "rodei ontem e deu diferente" em demonstração de rigor metodológico, e diferencia de ferramenta barata que entrega número único e falsamente preciso.
 
-**O8 — Corrigir os erros factuais do `problema-drafted.md`**
+**O8 — Corrigir os erros factuais do `problema.md`**
 "ChatGPT tem 100M users" (marco de 2023), "X API aberta" (falso desde 2023) e "web scraping é legal para dados públicos" (confunde legalidade com Termos de Uso). Custo de correção próximo de zero; custo de não corrigir é a credibilidade da apresentação inteira.
 
 ---
@@ -118,7 +118,7 @@ Hoje a variação entre execuções é um passivo que *"precisa ser explicada ao
 
 **O7 — Banda.** Incluir o intervalo observado das cinco execuções no próximo relatório gerado, com uma linha de explicação na página do pilar de AI Perception. Mudança pequena de apresentação, sem alterar o cálculo.
 
-**O8 — Correções.** Aplicar direto no `problema-drafted.md` junto da reescrita já mapeada em `estrategia/V1-analise-do-documento.md`, ou remover a seção "Dados Existem", que concentra os três erros e é fora de escopo para um documento de problema.
+**O8 — Correções.** Aplicar direto no `problema.md` junto da reescrita já mapeada em `estrategia/V1-analise-do-documento.md`, ou remover a seção "Dados Existem", que concentra os três erros e é fora de escopo para um documento de problema.
 
 ---
 

@@ -118,4 +118,18 @@ Mais dinheiro se move pra IA. Mais decisões são tomadas por LLMs. Marcas come�
 
 ## O Problema em Uma Frase
 
-**Ninguém mede como você é realmente visto por inteligência artificial. E sem medição, você não consegue melhorar o que não enxerga.**
+**Medir como a IA te interpreta já é possível e está ficando barato. O que ninguém faz é responder por essa interpretação e operar para mudá-la — e é aí que a receita se perde, antes do primeiro clique.**
+
+---
+
+## Métrica
+
+| Métrica | Alvo | Como confiro |
+|---|---|---|
+| Conversas com o ICP realizadas (contagem acumulada) | De **0** para **5** até **05/10/2026** | **Onde:** contar os arquivos `.md` em `estrategia/conversas/` — uma ata por conversa, gerada pela skill `fecha-conversa`. **Cálculo:** contagem simples de arquivos; não conta e-mail enviado sem resposta, só conversa realizada. **Frequência:** toda segunda às 9h, junto da execução da Regra 1. **Quem atualiza:** Hugo, ao fechar cada conversa. |
+
+**Por que esta métrica e não outra.** O repositório não tem cliente, receita, ticket nem contrato — `contexto/drafted-negocio.md` declara isso, e o `CLAUDE.md` proíbe estimar esses números. Conversa realizada é a única coisa hoje verificável no disco que muda o estado do problema: sem ela, `contexto/drafted-icp.md` continua sendo hipótese construída a partir da lógica do produto, e não retrato de comprador.
+
+**Origem do alvo.** O número 5 vem do item **O6b** da rodada 01 (`estrategia/V3-analise-semanal-01.md`), que já especifica cinco conversas frias com empresas do ICP. Não é alvo novo — é o alvo que já estava escrito, agora com prazo.
+
+**Estado atual verificado em 21/09/2026:** a pasta `estrategia/conversas/` não existe. Zero conversas registradas, 28 dias após a rodada que definiu o item.

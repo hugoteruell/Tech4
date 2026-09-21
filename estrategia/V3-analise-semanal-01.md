@@ -7,7 +7,7 @@
 ## Entrada preenchida
 
 ```
-OBJETO: problema-drafted.md + Contexto/ + as duas análises anteriores
+OBJETO: problema.md + contexto/ + as duas análises anteriores
 OBJETIVO: [ASSUMIDO] sair de zero cliente pagante documentado para
           ao menos um contrato registrado, sabendo por qual frente entrou
 ESTADO ANTERIOR: tabela O1–O8 de V2-analise-do-negocio.md
@@ -30,9 +30,9 @@ DECISÃO QUE ISSO ALIMENTA: no que trabalhar esta semana
 | O5 | Destravar LinkedIn | Parado | Segue "aguardando confirmação do co-founder" |
 | O6 | Entrevistar quem já pagou | Parado | Nenhum registro de conversa |
 | O7 | Score em banda | Parado | — |
-| O8 | Corrigir erros factuais | Meio andado | Identificados no V1; `problema-drafted.md` intocado desde 06/08 |
+| O8 | Corrigir erros factuais | Meio andado | Identificados no V1; `problema.md` intocado desde 06/08 |
 
-**Ressalva de janela:** o intervalo real entre a rodada anterior e esta foi de **26 minutos**, não uma semana. "Parado" significa "não iniciado", não "estagnado". A única leitura temporal legítima é outra: o `problema-drafted.md` é de **06/08** e todo o resto do repositório é de **24/08** — 18 dias em que quatro documentos de análise foram produzidos e nenhum artefato de cliente entrou.
+**Ressalva de janela:** o intervalo real entre a rodada anterior e esta foi de **26 minutos**, não uma semana. "Parado" significa "não iniciado", não "estagnado". A única leitura temporal legítima é outra: o `problema.md` é de **06/08** e todo o resto do repositório é de **24/08** — 18 dias em que quatro documentos de análise foram produzidos e nenhum artefato de cliente entrou.
 
 **Novo esta rodada:** existe agora corpo analítico e instrumento de análise. Nenhum dos dois é cliente.
 
@@ -54,7 +54,7 @@ O6 começa com *"listar todo mundo que já pagou"*. Se a resposta for "ninguém 
 *Hipótese: essa é a razão real da paralisia, não falta de tempo.* Custa uma pergunta verificar.
 
 **C3 — Assimetria de retorno entre analisar e prospectar.**
-Fonte: datas dos arquivos do repositório. Analisar dá retorno imediato, mensurável em páginas, e é privado — nada externo pode recusá-lo. Prospectar dá retorno incerto, demorado e público. Com capacidade escassa e perfil de fundador técnico (`Contexto/About me.md`), a atividade que se auto-recompensa desloca a que não se recompensa. É a causa 2.1 da rodada anterior, agora com evidência em vez de inferência.
+Fonte: datas dos arquivos do repositório. Analisar dá retorno imediato, mensurável em páginas, e é privado — nada externo pode recusá-lo. Prospectar dá retorno incerto, demorado e público. Com capacidade escassa e perfil de fundador técnico (`contexto/About me.md`), a atividade que se auto-recompensa desloca a que não se recompensa. É a causa 2.1 da rodada anterior, agora com evidência em vez de inferência.
 
 **C4 — Bloqueios de decisão sobrevivem a rodadas de análise.**
 "LinkedIn aguardando confirmação do co-founder" aparece em `About me.md`, em `drafted-negocio.md` e nas duas análises. Um item que atravessa três documentos sem ser resolvido não está aguardando informação — está sem dono. Mesmo mecanismo de C1, num caso concreto.
@@ -90,7 +90,7 @@ O6b não depende de ter cliente e produz o mesmo insumo.
 *Por que acontece:* está catalogado como decisão de produto, e decisão de produto não tem prazo.
 *Mudança:* tratar como item com dono e data-limite. A resposta pode ser não — o custo está em ficar aberto.
 
-**O8 — Corrigir o `problema-drafted.md`**
+**O8 — Corrigir o `problema.md`**
 *Observação:* três erros factuais identificados no V1; o arquivo não é editado desde 06/08.
 *Por que acontece:* a correção foi documentada em outro arquivo, o que dá sensação de resolvido sem resolver.
 *Mudança:* editar o arquivo-fonte. Só a correção factual e a remoção da seção "Dados Existem" — não a reescrita completa, que depende de O6b.
@@ -135,7 +135,7 @@ Critério aplicado: alta exige impacto direto no objetivo **e** nenhuma dependê
 
 ## 6. Não fazer esta semana
 
-- **Não reescrever o `problema-drafted.md` por inteiro.** A cena de abertura correta depende do que O6b trouxer. Reescrever agora é escrever duas vezes.
+- **Não reescrever o `problema.md` por inteiro.** A cena de abertura correta depende do que O6b trouxer. Reescrever agora é escrever duas vezes.
 - **Não construir Reputational Risk.** Depende de O6 confirmar que crise é gatilho dominante.
 - **Não mexer em pesos ou normalização do scorecard.** É o trabalho de maior retorno percebido e menor retorno real nesta fase — precisamente o mecanismo de C3.
 - **Não rodar esta análise de novo sem fato novo.** O prompt semanal só gera valor sobre delta. Rodado sobre estado parado, produz mais um documento e reforça a causa que ele mesmo diagnostica.
