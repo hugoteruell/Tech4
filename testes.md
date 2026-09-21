@@ -1,107 +1,135 @@
-# Testes de falha da operação
+# Testes de falha
 
-Testes aplicados à rotina `vigia-parados` ([`automacoes.md`](automacoes.md)) e às regras de [`regras.md`](regras.md), contra a fonte declarada em [`dados/fonte.md`](dados/fonte.md).
+Testado em 21/09/2026.
 
-**Executados em 21/09/2026, 08:21.** Rodaram sobre cópias do `dados/amostra.csv` em diretório temporário — o arquivo do repositório não foi alterado. Os três acharam falha real; nenhum resultado abaixo é hipotético.
+Todos os testes abaixo foram executados contra a rotina real [`vigia_parados.py`](vigia_parados.py), que implementa a Regra 1 de [`regras.md`](regras.md), usando a fonte real `dados/amostra.csv`. Cada bloco "O que aconteceu" é saída copiada do terminal, não descrição.
+
+**Execução de controle**, antes dos testes, com a fonte íntegra:
+
+```
+2026-09-21 08:37 · Regra 1 · DISPAROU · lidos: 9 · considerados: 4 · ignorados: 0
+  O1 · Entrada por evidencia de perda · 28 dias · nenhum one-pager em estrategia/
+  O5 · Destravar decisao sobre LinkedIn · 28 dias · aguardando ainda presente em contexto/drafted-negocio.md:78
+  O6 · Conversas com o ICP (ramo O6b) · 28 dias · 0 arquivos em estrategia/conversas/
+  O9 · Escrever objetivo.md com numero e data · 28 dias · objetivo.md nao existe no disco
+```
 
 ---
 
-## 1. Fonte saiu do ar
+## Cenário 1 · A fonte saiu do ar
 
-**O que foi testado.** O comportamento da rotina quando `dados/amostra.csv` — a fonte canônica — não pode ser lido.
+**O que eu testei:**
+Renomeei a fonte real do repositório, `dados/amostra.csv` → `dados/amostra_OLD.csv`, com `git mv`, e rodei a rotina como ela estava escrita em `automacoes.md` antes de existir a seção de segurança.
 
-**Como a falha foi simulada.** Dois cenários, executados separadamente:
-1. Caminho inexistente passado ao leitor de CSV.
-2. Arquivo presente mas **vazio** (zero bytes).
+**O que aconteceu:**
 
-**O que aconteceu.**
+```
+Traceback (most recent call last):
+  File "vigia_v1.py", line 3, in <module>
+    linhas = list(csv.DictReader(open("dados/amostra.csv")))
+FileNotFoundError: [Errno 2] No such file or directory: 'dados/amostra.csv'
+```
 
-| Cenário | Resultado real |
-|---|---|
-| Arquivo ausente | `FileNotFoundError: [Errno 2] No such file or directory` — a rotina **aborta** com stack trace |
-| Arquivo vazio | Lê **0 linhas sem erro nenhum** e sairia como `nada a reportar · N = 0` |
+A rotina **abortou com stack trace**. Não devolveu resultado vazio, não inventou nada e não mostrou `FONTE INDISPONÍVEL` — simplesmente quebrou. Num agendador sem monitoramento, isso seria uma execução que falha em silêncio.
 
-**Falha encontrada.** As duas são problema, e a segunda é a pior. O prompt em `automacoes.md` manda responder `FONTE INDISPONÍVEL` e parar — **isso não está implementado**. No caso do arquivo vazio, a rotina produziria um silêncio indistinguível de operação saudável. É exatamente o risco que a cláusula "se não disparar" da Regra 1 antecipa, e o teste confirma que a proteção está escrita mas não existe no código.
+**O que eu consertei:**
+Escrevi a seção `## Segurança e tratamento de falhas` em `regras.md` e implementei a rotina em `vigia_parados.py`, com verificação de existência, permissão de leitura, arquivo vazio e cabeçalho ausente **antes** de qualquer leitura. Encerra com código de saída 1, que um agendador consegue detectar.
 
-**Como detectamos que houve problema.** Hoje, só olhando o terminal. O `FileNotFoundError` é visível; o arquivo vazio **não é** — ele passa silenciosamente.
+**Resultado após correção:**
+Teste repetido com a fonte ainda renomeada:
 
-**Plano B / correção.**
-1. Antes de qualquer leitura, checar se o arquivo existe **e** tem mais de uma linha. Se falhar, emitir `FONTE INDISPONÍVEL` e parar, sem nunca cair em "nada a reportar".
-2. Tratar `N = 0` como erro, não como silêncio: a fonte tem 9 linhas e 4 itens Alta; `N = 0` só é possível se a leitura falhou.
-3. Fonte de reserva: regerar `amostra.csv` a partir da tabela `## 4. Prioridade` da análise mais recente em `estrategia/`, que é a origem do extrato.
+```
+FONTE INDISPONÍVEL · dados/amostra.csv · arquivo não encontrado
+código de saída: 1
+```
+
+A fonte foi restaurada ao nome original com `git mv`. Conferido com `git diff --quiet dados/amostra.csv`: **idêntica byte a byte** ao arquivo versionado.
 
 ---
 
-## 2. Chegou dado inesperado
+## Cenário 2 · Chegou dado inesperado
 
-**O que foi testado.** Como a rotina reage a linhas malformadas no CSV.
+**O que eu testei:**
+Backup da fonte, e três erros controlados introduzidos em registros reais:
 
-**Qual dado inesperado entrou.** Duas linhas acrescentadas a uma cópia:
+| Erro | Registro | Alteração |
+|---|---|---|
+| Campo obrigatório vazio | O1 | `status` `nao_iniciado` → vazio |
+| Valor numérico inválido | O5 | `dias_parado` `28` → `-3` (negativo) |
+| Data em formato diferente | O9 | `data_origem` `2026-08-24` → `24/08/2026` |
+
+Depois, um segundo teste com **um erro só** (O5 com `dias_parado` = `"vinte"`), para verificar se um registro ruim derruba os válidos.
+
+**O que aconteceu:**
+
+Com os três erros:
 
 ```
-O10,Item com dado sujo,Alta,nao_iniciado,2026-09-01,vinte,campo dias_parado veio como texto
-O11,Item sem status,Alta,,2026-09-01,10,status vazio
+FONTE SUSPEITA — 3 de 9 registros ignorados
+IGNORADOS: O1 (status vazio) · O5 (dias_parado negativo: -3) · O9 (data_origem fora do formato AAAA-MM-DD: "24/08/2026")
+código de saída: 2
 ```
 
-A primeira tem **texto onde deveria haver número** (`dias_parado = "vinte"`). A segunda tem **campo obrigatório vazio** (`status`).
+Os três foram detectados, cada um nomeado com o próprio motivo. Como 3 de 9 é 33% e o limiar é 20%, a saída virou `FONTE SUSPEITA` em vez de relatório — nenhum dado inválido entrou no cálculo.
 
-**O que aconteceu.**
+Com um erro só:
 
 ```
-ValueError: invalid literal for int() with base 10: 'vinte'
+2026-09-21 08:37 · Regra 1 · DISPAROU · lidos: 9 · considerados: 3 · ignorados: 1
+  O1 · Entrada por evidencia de perda · 28 dias · nenhum one-pager em estrategia/
+  O6 · Conversas com o ICP (ramo O6b) · 28 dias · 0 arquivos em estrategia/conversas/
+  O9 · Escrever objetivo.md com numero e data · 28 dias · objetivo.md nao existe no disco
+IGNORADOS: O5 (dias_parado não numérico: "vinte")
 ```
 
-A rotina **aborta na linha suja e não reporta os itens válidos que vinham antes dela**. O1, O5, O6 e O9 — que disparariam normalmente — são perdidos porque uma linha posterior estava quebrada. Uma linha ruim derruba o relatório inteiro.
+O registro ruim foi pulado, os três válidos continuaram sendo reportados, e o que foi ignorado aparece com o motivo. `considerados` caiu de 4 para 3, tornando a perda visível no próprio número.
 
-**Como a rotina deveria reagir.** Processar linha a linha, isolando o erro:
+**O que eu consertei:**
+A validação passou a ser por registro, não pela execução inteira: cada linha é checada isoladamente e o erro vai para uma lista de ignorados em vez de interromper o laço. `status` vazio **nunca** recebe padrão — um padrão `concluido` esconderia justamente o item parado que a regra existe para achar.
 
-1. Linha com campo inválido é **pulada**, não derruba a execução.
-2. As linhas puladas aparecem no fim da saída, em bloco próprio: `LINHAS IGNORADAS: O10 (dias_parado não numérico), O11 (status vazio)`.
-3. Se mais de 20% das linhas forem ignoradas, a saída vira `FONTE SUSPEITA` em vez de relatório — muitos defeitos indicam extrato mal gerado, não dado ruim isolado.
-
-**Correção / plano B.** Envolver a conversão de cada linha em tratamento de erro individual e acumular os defeitos numa lista, em vez de deixar a primeira exceção interromper tudo. `status` vazio deve ser tratado como `desconhecido` e reportado, nunca como `concluido` — o padrão errado esconderia um item parado.
-
-`TESTE PENDENTE DE EXECUÇÃO` — a correção acima ainda não foi implementada. O teste acima documenta o comportamento atual, que é o defeituoso.
+A fonte foi restaurada do backup. Conferido: **idêntica byte a byte** ao arquivo versionado, 9 registros.
 
 ---
 
-## 3. A condição nunca dispara
+## Cenário 3 · A condição nunca dispara
 
-**Regra testada:** Regra 2 · semana que produziu documento e nenhuma conversa.
+**O que eu testei:**
+Regra 1 — item de prioridade alta parado há mais de 7 dias. Rodei a rotina real numa situação em que a condição **não** é verdadeira: extrato recalculado para **25/08/2026**, um dia após a rodada 01, quando nenhum item havia passado de 7 dias. Os dados são os mesmos nove registros reais; só a data de referência muda.
 
-**Como percebemos que a regra não dispara.** Executada contra a semana ISO **W37 (07 a 13/09/2026)**, com dados reais do `git log`:
+**O que aconteceu:**
 
 ```
-commits em estrategia/ ou contexto/ na W37: 0 | atas: 0
-CONDIÇÃO FALSA — silêncio
+2026-08-25 08:37 · Regra 1 · nada a reportar · lidos: 9 · considerados: 4 · ignorados: 0, máximo de dias parados: 1
+código de saída: 0
 ```
 
-A regra ficou calada. Mas o motivo **não** foi que a semana terminou em conversa — foi que **não houve commit nenhum**. A semana não produziu nem documento nem conversa.
+A condição não disparou, corretamente. E o silêncio veio acompanhado de números.
 
-**Como distinguir operação saudável de rotina quebrada.** São três silêncios diferentes, e sem o motivo registrado eles são idênticos no log:
+**Como sei que a rotina está funcionando:**
+
+O silêncio nunca é uma linha em branco. Ele carrega `lidos`, `considerados`, `ignorados` e `máximo de dias parados` — e é isso que separa os três estados possíveis:
 
 | Registro | Leitura |
 |---|---|
-| `nada a reportar · houve 2 ata(s) na semana` | Saudável — a semana terminou em conversa |
-| `nada a reportar · 0 commit em estrategia/ e contexto/` | **Não é saudável** — semana morta, nada aconteceu |
-| Ausência total de linha no log | **Rotina quebrada** — ninguém rodou, ou a execução falhou |
+| `nada a reportar · lidos: 9 · considerados: 4 · … máximo: 1` | **Tudo bem.** Leu a fonte inteira, avaliou os 4 itens Alta, nenhum passou do limite |
+| `nada a reportar · lidos: 0` ou `considerados: 0` | **Quebrada.** A fonte tem 9 registros e 4 itens Alta; esses números só são possíveis se a leitura falhou |
+| `FONTE INDISPONÍVEL` | **Quebrada**, e diz o motivo |
+| Nenhuma linha registrada | **Quebrada** — ninguém rodou, ou a execução morreu antes de escrever |
 
-A cláusula "se não disparar" da Regra 2 já exige esse motivo por escrito. Este teste é a razão de ela existir.
+O `máximo de dias parados` é o indicador mais útil do silêncio: ele mostra o quanto falta para disparar. Um silêncio com máximo de 1 dia é folgado; com 7 dias, está na borda.
 
-**Depois de quanto tempo investigar.** Duas execuções seguidas com o motivo `0 commit` — isto é, **duas semanas sem nenhum movimento**. Uma semana parada é normal e está prevista: o `CLAUDE.md` proíbe rodar a análise sem fato novo. Duas seguidas significam que o ciclo parou, não que ele está descansando.
+**O que eu consertei / plano B:**
 
-Para a Regra 1 o critério é o inverso: ela está disparando há 28 dias com os mesmos quatro itens. Regra que dispara sempre com o mesmo conteúdo também perde função — vira ruído que se aprende a ignorar. Se a rodada 02 mantiver os mesmos quatro itens em Alta, o problema não é a regra, é a fila.
+**Depois de quanto tempo investigar.** Duas execuções seguidas com `lidos: 0` ou sem linha nenhuma — ou seja, **duas semanas** sem registro legível. Uma semana silenciosa é normal e prevista: o `CLAUDE.md` proíbe rodar a análise sem fato novo, então a tabela de prioridade pode ficar parada de propósito.
 
-**Como testar propositalmente a condição.** Procedimento pronto, ainda não executado:
+**O problema oposto, que é o real hoje.** A Regra 1 vem disparando com os **mesmos quatro itens há 28 dias**. Regra que dispara sempre com o mesmo conteúdo deixa de ser alerta e vira paisagem. Se a rodada 02 mantiver O1, O5, O6 e O9 em Alta, o defeito não está na regra — está na fila.
 
-1. Criar `estrategia/conversas/01-teste.md` com conteúdo mínimo e commitar.
-2. Rodar a Regra 2 na mesma semana.
-3. **Esperado:** silêncio com o motivo `houve 1 ata na semana` — o silêncio saudável.
-4. Remover o arquivo de teste e commitar a remoção.
-5. Rodar de novo. **Esperado:** volta a disparar.
+**Como forçar a condição para confirmar que o alerta ainda funciona.** Foi exatamente o que o teste acima faz, e o procedimento é reproduzível por qualquer pessoa:
 
-Se o passo 3 produzir silêncio com o motivo errado, ou nenhum registro, a regra está quebrada.
+```bash
+python3 vigia_parados.py --ref 2026-08-25 --fonte <extrato recalculado>
+```
 
-`TESTE PENDENTE DE EXECUÇÃO` — depende de criar e remover um arquivo de teste no repositório, que é uma alteração no histórico e precisa da sua autorização.
+Rodar com uma data de referência anterior ao limite dos 7 dias deve produzir `nada a reportar` com `considerados: 4`. Rodar com a data de hoje deve disparar quatro itens. Se os dois derem o mesmo resultado, a condição parou de ser avaliada.
 
-**O que fica registrado quando não há alerta.** Uma linha por execução, sempre, com data, hora, regra, motivo do silêncio e os números verificados. Execução que não deixa linha nenhuma é tratada como falha, não como ausência de alerta.
+`TESTE PENDENTE DE EXECUÇÃO` — o caminho inverso, criar uma ata em `estrategia/conversas/` para silenciar a Regra 2 e depois removê-la, não foi executado. Ele altera o histórico do repositório e depende de autorização. O procedimento está escrito e pode ser rodado a qualquer momento.

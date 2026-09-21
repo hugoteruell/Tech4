@@ -4,6 +4,15 @@ Rotinas que rodam sobre o ciclo de trabalho deste repositório. As condições e
 
 **Estado do agendamento:** nenhum agendador está configurado. Todas as execuções registradas abaixo foram disparadas manualmente. O gatilho horário descrito é o desenho da rotina, não um cron ativo.
 
+**Implementação executável:** [`vigia_parados.py`](vigia_parados.py). O prompt abaixo é a forma canônica da rotina; o script é a implementação que cumpre a seção `## Segurança e tratamento de falhas` de [`regras.md`](regras.md) e permite executar e reproduzir os testes de [`testes.md`](testes.md).
+
+```bash
+python3 vigia_parados.py                    # execução normal
+python3 vigia_parados.py --ref 2026-08-25   # avaliação em data de referência
+```
+
+Códigos de saída: `0` normal · `1` FONTE INDISPONÍVEL · `2` FONTE SUSPEITA.
+
 ---
 
 ## Rotina com condição — NP2
@@ -108,4 +117,35 @@ CONDIÇÃO: FALSA — nada a reportar
 
 Em 25/08 os mesmos quatro itens existiam e nenhum havia passado do limite de 7 dias. A rotina fica corretamente em silêncio, com `N = 4` registrado — o que distingue "verifiquei e está tudo bem" de "não consegui ler a fonte".
 
-**Pendência declarada:** ainda não houve uma execução ao vivo que resultasse em silêncio. Ela só acontecerá quando os itens O1, O5, O6 e O9 forem concluídos ou quando uma nova rodada de análise redefinir as prioridades.
+#### Execução 3 — com a rotina implementada, 21/09/2026
+
+- **Data:** 21/09/2026
+- **Hora:** 08:37
+- **Status:** DISPAROU
+- **Comando:** `python3 vigia_parados.py --ref 2026-09-21`
+- **Resultado:**
+
+```
+2026-09-21 08:37 · Regra 1 · DISPAROU · lidos: 9 · considerados: 4 · ignorados: 0
+  O1 · Entrada por evidencia de perda · 28 dias · nenhum one-pager em estrategia/
+  O5 · Destravar decisao sobre LinkedIn · 28 dias · aguardando ainda presente em contexto/drafted-negocio.md:78
+  O6 · Conversas com o ICP (ramo O6b) · 28 dias · 0 arquivos em estrategia/conversas/
+  O9 · Escrever objetivo.md com numero e data · 28 dias · objetivo.md nao existe no disco
+```
+
+Mesma condição das execuções anteriores, agora com a contagem obrigatória de lidos, considerados e ignorados exigida pela seção de segurança.
+
+#### Execução 4 — silêncio com a rotina implementada
+
+- **Data:** 21/09/2026 · **Hora:** 08:37
+- **Status:** NÃO DISPAROU
+- **Comando:** `python3 vigia_parados.py --ref 2026-08-25 --fonte <extrato recalculado para 25/08>`
+- **Resultado:**
+
+```
+2026-08-25 08:37 · Regra 1 · nada a reportar · lidos: 9 · considerados: 4 · ignorados: 0, máximo de dias parados: 1
+```
+
+Os nove registros são os reais; apenas a data de referência muda. Detalhe em [`testes.md`](testes.md), Cenário 3.
+
+**Pendência declarada:** ainda não houve uma execução ao vivo, na data corrente, que resultasse em silêncio. Ela só acontecerá quando os itens O1, O5, O6 e O9 forem concluídos ou quando uma nova rodada de análise redefinir as prioridades.
